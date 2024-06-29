@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [selectedType, setSelectedType] = useState('');
   const [text, setText] = useState('');
 
   const problemTypes = [
@@ -12,12 +12,7 @@ function App() {
   ];
 
   const handleTypeChange = (event) => {
-    const type = event.target.value;
-    if (event.target.checked) {
-      setSelectedTypes([...selectedTypes, type]);
-    } else {
-      setSelectedTypes(selectedTypes.filter(t => t !== type));
-    }
+    setSelectedType(event.target.value);
   };
 
   const handleTextChange = (event) => {
@@ -26,7 +21,7 @@ function App() {
 
   const handleGenerate = () => {
     // 여기에 생성 로직을 구현합니다.
-    console.log("Selected Types:", selectedTypes);
+    console.log("Selected Type:", selectedType);
     console.log("Text:", text);
   };
 
@@ -39,9 +34,11 @@ function App() {
         {problemTypes.map((type, index) => (
           <label key={index}>
             <input
-              type="checkbox"
+              type="radio"
               value={type}
+              checked={selectedType === type}
               onChange={handleTypeChange}
+              name="problemType"
             />
             {type}
           </label>
@@ -53,7 +50,7 @@ function App() {
         <textarea
           value={text}
           onChange={handleTextChange}
-          placeholder="지문을 입력하세요"
+          placeholder="500자 정도의 텍스트를 입력하세요..."
           rows={10}
         />
       </div>
