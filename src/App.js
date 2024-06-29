@@ -1,25 +1,67 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [text, setText] = useState('');
+
+  const problemTypes = [
+    "주제문제", "제목문제", "의미추론문제", "내용일치문제", "내용불일치문제",
+    "어휘문제", "빈칸문제", "순서문제", "문장삽입문제", "요약문 빈칸문제",
+    "동의어 반의어", "내용구조화"
+  ];
+
+  const handleTypeChange = (event) => {
+    const type = event.target.value;
+    if (event.target.checked) {
+      setSelectedTypes([...selectedTypes, type]);
+    } else {
+      setSelectedTypes(selectedTypes.filter(t => t !== type));
+    }
+  };
+
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+  };
+
+  const handleGenerate = () => {
+    // 여기에 생성 로직을 구현합니다.
+    console.log("Selected Types:", selectedTypes);
+    console.log("Text:", text);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Kailey English</h1>
+      
+      <div className="problem-types">
+        <h2>문제 유형</h2>
+        {problemTypes.map((type, index) => (
+          <label key={index}>
+            <input
+              type="checkbox"
+              value={type}
+              onChange={handleTypeChange}
+            />
+            {type}
+          </label>
+        ))}
+      </div>
+
+      <div className="text-input">
+        <h2>텍스트 입력</h2>
+        <textarea
+          value={text}
+          onChange={handleTextChange}
+          placeholder="500자 정도의 텍스트를 입력하세요..."
+          rows={10}
+        />
+      </div>
+
+      <button onClick={handleGenerate}>생성</button>
     </div>
   );
 }
 
 export default App;
+
