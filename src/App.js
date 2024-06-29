@@ -31,6 +31,25 @@ function App() {
     setText(event.target.value);
   };
 
+  // const handleGenerate = async () => {
+  //   if (!selectedType || !text) {
+  //     alert('문제 유형과 텍스트를 모두 입력해주세요.');
+  //     return;
+  //   }
+
+  //   setIsLoading(true);
+  //   try {
+  //     const selectedTypeEng = problemTypes.find(type => type.kor === selectedType).eng;
+  //     const question = await generateQuestion(selectedTypeEng, text);
+  //     setGeneratedQuestion(question);
+  //   } catch (error) {
+  //     console.error('Error generating question:', error);
+  //     alert('문제 생성 중 오류가 발생했습니다.');
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+  
   const handleGenerate = async () => {
     if (!selectedType || !text) {
       alert('문제 유형과 텍스트를 모두 입력해주세요.');
@@ -39,12 +58,13 @@ function App() {
 
     setIsLoading(true);
     try {
-      const selectedTypeEng = problemTypes.find(type => type.kor === selectedType).eng;
-      const question = await generateQuestion(selectedTypeEng, text);
+      console.log('Calling API with:', { selectedType, text });
+      const question = await generateQuestion(selectedType, text);
+      console.log('Received question:', question);
       setGeneratedQuestion(question);
     } catch (error) {
       console.error('Error generating question:', error);
-      alert('문제 생성 중 오류가 발생했습니다.');
+      alert('문제 생성 중 오류가 발생했습니다: ' + error.message);
     } finally {
       setIsLoading(false);
     }
