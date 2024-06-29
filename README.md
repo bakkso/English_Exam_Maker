@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# English Exam Maker
+This was created to generate questions for high school English exams.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
