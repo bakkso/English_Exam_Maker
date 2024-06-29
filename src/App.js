@@ -50,7 +50,7 @@ function App() {
         <textarea
           value={text}
           onChange={handleTextChange}
-          placeholder="500자 정도의 텍스트를 입력하세요..."
+          placeholder="지문을 입력하세요"
           rows={10}
         />
       </div>
