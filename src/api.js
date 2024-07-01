@@ -4,7 +4,7 @@ const API_URL = 'https://api.anthropic.com/v1/complete';
 export async function generateQuestion(problemType, text) {
   console.log('Calling generateQuestion with:', { problemType, text });
   try {
-    const response = await fetch('/.netlify/functions/generate-question', {
+    const response = await fetch('/.netlify/functions/generate-question.js', {
       method: 'POST',
       body: JSON.stringify({ problemType, text }),
     });
