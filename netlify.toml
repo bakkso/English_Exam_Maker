@@ -1,2 +1,7 @@
 [build]
   functions = ".netlify/functions"
+  command = "CI= npm run build"  # CI 환경 변수를 설정하지 않도록 합니다.
+  publish = "build"
+
+[context.production.environment]
+  REACT_APP_CLAUDE_API_KEY = "sk-ant-api03-BAlYicUZabXkADFqP3js9bOwIVEP0xJqKPk3JNvrJkxobr8E0Ya0uQr0-CxDrO73AjGlCYvpeuXHJSmW0hzc6A"

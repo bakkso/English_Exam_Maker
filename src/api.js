@@ -1,11 +1,14 @@
-const API_KEY = process.env.REACT_APP_CLAUDE_API_KEY;
-const API_URL = 'https://api.anthropic.com/v1/complete';
+// const API_KEY = process.env.REACT_APP_CLAUDE_API_KEY;
+// const API_URL = 'https://api.anthropic.com/v1/complete';
 
 export async function generateQuestion(problemType, text) {
   console.log('Calling generateQuestion with:', { problemType, text });
   try {
-    const response = await fetch('/.netlify/functions/generate-question.js', {
+    const response = await fetch('/.netlify/functions/generate-question', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ problemType, text }),
     });
 
